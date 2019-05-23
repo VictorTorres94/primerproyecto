@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegistroFrame</title>
+</head>
+<body>
+    <div class="jumbotron">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#entrar">Entrar</a></li>
+            <li><a data-toggle="tab" href="#registrar">Registrarse</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="entrar" class="tab-pane fade in active">
+                <h2>Entra</h2>
+                @using (Html.BeginForm("Entrar", "Registro", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        @Html.Label("Email: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("email", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Contraseña: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                        </div>
+                    </div>
+                    <span style="color:red">@ViewData["Error"]</span><br />
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="submit" class="btn btn-primary" formtarget="_parent" runat="server" id="buttonSubmit">Entrar</button>
+                            <button type="reset" class="btn btn-default">Limpiar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="registrar" class="tab-pane fade">
+                <h2>registrar</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

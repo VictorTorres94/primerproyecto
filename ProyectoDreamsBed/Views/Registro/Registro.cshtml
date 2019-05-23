@@ -1,0 +1,102 @@
+﻿@model ProyectoDreamsBed.Models.UsuarioLogin
+
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string activo = "";
+    string activoEntrar = "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registro</title>
+    <script type="text/javascript" src="~/Scripts/ValidacionesRegistro.js"></script>
+</head>
+<body>
+    <div class="jumbotron">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#entrar">Entrar</a></li>
+            <li><a data-toggle="tab" href="#registrar">Registrarse</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="entrar" class = 'tab-pane fade in active'>
+                <h2>Entra</h2>
+                @using (Html.BeginForm("Entrar", "Registro", FormMethod.Post, new { @class = "form-horizontal", @id = "formularioEntrar" }))
+                {
+                    <div class="form-group">
+                        @Html.Label("Email: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("email", new { htmlAttributes = new { @class = "form-control", @type="email", @id = "email" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Contraseña: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "password"} })
+                        </div>
+                    </div>
+                    <span id="mensajeError" style="color:red">@ViewData["Error"]</span><br />
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                            <button type="reset" class="btn btn-default">Limpiar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="registrar" class="tab-pane fade">
+                <h2>Regístrate</h2>
+                @using (Html.BeginForm("Registrarse", "Registro", FormMethod.Post, new { @class = "form-horizontal", @id = "formularioRegistro" }))
+                {
+                    <div class="form-group">
+                        @Html.Label("Nombre: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("nombre", new { htmlAttributes = new { @class = "form-control", @id = "nombre" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Apellidos: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("apellidos", new { htmlAttributes = new { @class = "form-control", @id = "apellidos" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Email: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("emailRegistro", new { htmlAttributes = new { @class = "form-control", @id = "emailRegistro", @type = "email" } })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Contraseña: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("passwordRegistro1", new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "passwordRegistro1" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Confirmar Contraseña: ", new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            @Html.Editor("passwordRegistro2", new { htmlAttributes = new { @class = "form-control", @type = "password", @id = "passwordRegistro2" } })
+                            <span id="errorPassword2"></span>
+                        </div>
+                    </div>
+                    <span id="mensajeErrorRegistro" style="color:red">@ViewData["ErrorRegistro"]</span><br />
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                            <button type="reset" class="btn btn-default" id="resetRegistro">Limpiar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
